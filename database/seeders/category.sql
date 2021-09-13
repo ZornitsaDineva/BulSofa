@@ -1,0 +1,15 @@
+INSERT INTO `category` (`category_id`, `category_weight`, `category_caption`, `category_title_en`, `category_title_bg`, `category_icon`, `category_image`, `created_at`, `updated_at`) VALUES
+(1, 1, NULL, 'Electronics', 'Електроника', 'icofont icofont-laptop-alt', 'images/category/electronics.png', '2021-03-19 18:04:37', '2021-03-19 18:53:47'),
+(2, 2, NULL, 'Cars and Vehicle', 'Превозни средства', 'icofont icofont-police-car-alt-2', 'images/category/cars_and_vehicle.png', '2021-03-19 18:05:05', '2021-03-19 18:54:54'),
+(3, 3, NULL, 'Property', 'Собственост', 'icofont icofont-building-alt', 'images/category/property.png', '2021-03-19 18:12:34', '2021-03-19 18:12:34'),
+(4, 5, NULL, 'Home and Garden', 'Дом и градина', 'icofont icofont-ui-home', 'images/category/home_and_garden.png', '2021-03-19 18:14:57', '2021-03-19 18:14:57'),
+(5, 5, NULL, 'Health and Beauty', 'Здраве и красота', 'icofont icofont-nurse', 'images/category/health_and_beauty.png', '2021-03-19 18:16:09', '2021-03-19 18:16:09'),
+(6, 5, NULL, 'Sports and Toys', 'Спорт и забавление', 'icofont icofont-hockey', 'images/category/hobby_sports_and_kids.png', '2021-03-19 18:17:11', '2021-03-19 18:42:14'),
+(7, 4, NULL, 'Food and Agriculture', 'Храни и земеделие', 'icofont icofont-burger', 'images/category/food_and_agriculture.png', '2021-03-19 18:24:04', '2021-04-06 14:04:20'),
+(8, 5, NULL, 'Gift Item', 'Подаръци', 'icofont icofont-gift', 'images/category/gift_item.png', '2021-03-19 18:24:41', '2021-03-19 18:24:41'),
+(10, 8, NULL, 'Arts and Crafts', 'Изкуство и занаяти', 'icofont icofont-guiter', 'images/category/arts_and_crafts.png', '2021-03-19 18:29:50', '2021-03-19 18:41:11'),
+(11, 8, NULL, 'Books', 'Книги', 'icofont icofont-read-book', 'images/category/books.png', '2021-03-19 18:31:35', '2021-03-19 18:31:35'),
+(12, 8, NULL, 'Clothing', 'Дрехи', 'icofont icofont-baby-cloth', 'images/category/clothing.png', '2021-03-19 18:33:06', '2021-03-19 18:43:32'),
+(13, 9, NULL, 'Others', 'Други', 'icofont icofont-unity-hand', 'images/category/others.png', '2021-03-19 18:44:49', '2021-03-19 18:44:49'),
+(14, 8, NULL, 'Job', 'Работа', 'icofont icofont-boy', 'images/category/job.png', '2021-03-19 18:47:41', '2021-03-19 18:47:41'),
+(15, 6, NULL, 'Services', 'Услуги', 'icofont icofont-settings', 'images/category/services.png', '2021-03-19 18:48:33', '2021-03-19 18:48:33');
