@@ -56,5 +56,7 @@ class DatabaseSeeder extends Seeder
             if (is_file($file))
                 unlink($file);
         }
+
+        
     }
 }
