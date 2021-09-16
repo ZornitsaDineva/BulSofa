@@ -12,7 +12,7 @@ class Post extends Model
     use HasFactory;
 
     protected $primaryKey = "post_id";
-    protected $table = 'post';
+    protected $table = 'posts';
 
     public function Postimages()
     {
