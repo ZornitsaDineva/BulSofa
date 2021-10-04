@@ -1,4 +1,4 @@
-INSERT INTO `category` (`category_id`, `category_weight`, `category_caption`, `category_title_en`, `category_title_bg`, `category_icon`, `category_image`, `created_at`, `updated_at`) VALUES
+INSERT INTO `categories` (`category_id`, `category_weight`, `category_caption`, `category_title_en`, `category_title_bg`, `category_icon`, `category_image`, `created_at`, `updated_at`) VALUES
 (1, 1, NULL, 'Electronics', 'Електроника', 'icofont icofont-laptop-alt', 'images/category/electronics.png', '2021-03-19 18:04:37', '2021-03-19 18:53:47'),
 (2, 2, NULL, 'Cars and Vehicle', 'Превозни средства', 'icofont icofont-police-car-alt-2', 'images/category/cars_and_vehicle.png', '2021-03-19 18:05:05', '2021-03-19 18:54:54'),
 (3, 3, NULL, 'Property', 'Собственост', 'icofont icofont-building-alt', 'images/category/property.png', '2021-03-19 18:12:34', '2021-03-19 18:12:34'),

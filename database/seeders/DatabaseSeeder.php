@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Categories Seeded!');
 
         //Create SubCategories
-        $path = base_path('database/seeders/sub_category.sql');
+        $path = base_path('database/seeders/subcategory.sql');
         $this->command->info("Seeding $path");
         DB::unprepared(file_get_contents($path));
         $this->command->info('Sub Categories Seeded!');
@@ -57,6 +57,6 @@ class DatabaseSeeder extends Seeder
                 unlink($file);
         }
 
-        
+
     }
 }

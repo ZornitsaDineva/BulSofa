@@ -10,5 +10,5 @@ class Category extends Model
     use HasFactory;
 
     protected $primeryKey="category_id";
-    protected $table='category';
+    protected $table='categories';
 }

@@ -10,5 +10,5 @@ class Postimage extends Model
     use HasFactory;
 
     protected $primaryKey="postimage_id";
-    protected $table='post_images';
+    protected $table='postimages';
 }

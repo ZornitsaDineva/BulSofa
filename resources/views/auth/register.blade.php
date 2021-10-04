@@ -1,77 +1,55 @@
-@extends('layouts.app')
+@extends('site.master')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+@section('siteContent')
 
-                <div class="card-body">
+<section id="main" class="clearfix user-page">
+    <div class="container">
+        <div class="row text-center">
+            <!-- user-login -->
+            <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                <div class="user-account">
+                    <h2>{{ __('Register') }}</h2>
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        @if ($errors->has('name'))
+                        <strong class="text-danger pull-left">{{ $errors->first('name') }}</strong>
+                        @endif
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <input id="name" type="text" placeholder="{{ __('Name') }}" class="form-control" name="name" value="{{ old('name') }}" autofocus>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        @if ($errors->has('email'))
+                        <strong class="text-danger pull-left">{{ $errors->first('email') }}</strong>
+                        @endif
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <input id="email" type="email" placeholder="{{ __('E-Mail Address') }}" class="form-control" name="email" value="{{ old('email') }}" >
                         </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        @if ($errors->has('password'))
+                        <strong class="text-danger pull-left">{{ $errors->first('password') }}</strong>
+                        @endif
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <input id="password" type="password" placeholder="{{ __('Password') }}" class="form-control" name="password" >
                         </div>
 
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
+                        <div class="form-group">
+                            <input id="password-confirm" type="password" placeholder="{{ __('Confirm Password') }}" class="form-control" name="password_confirmation" >
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
+                        <div class="form-group">
+                            <label><input type="checkbox" name="signing" id="confirm"> {{__('By signing up for an account you agree to our Terms and Conditions')}} <span class="text-danger" id="confirm-err"></span> </label>
                         </div>
+
+                        <button type="submit" onclick="return verifyTick()" href="#" class="btn">{{ __('Register') }}</button>
                     </form>
+                    <!-- checkbox -->
+
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
+            </div><!-- user-login -->
+        </div><!-- row -->
+    </div><!-- container -->
+</section><!-- signup-page -->
 @endsection
+

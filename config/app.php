@@ -81,7 +81,7 @@ return [
     */
 
     'locale' => 'en',
-    
+
 
     /*
     |--------------------------------------------------------------------------
@@ -235,6 +235,7 @@ return [
          'Html' => Collective\Html\HtmlFacade::class,
          'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
          'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+         'Date' => Jenssegers\Date\Date::class
          /* Manually Added */
 
     ],

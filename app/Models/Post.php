@@ -27,7 +27,7 @@ class Post extends Model
     public function User()
     {
 
-        return $this->hasOne('App\User', 'id', 'user_id');
+        return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
 
     public static function findPublished($id)

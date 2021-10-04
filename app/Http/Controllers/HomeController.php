@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\View;
 
 
 /* Models */
-use App\User;
+use App\Models\User;
 use App\Models\Post;
 use App\Models\Postimage;
 use App\Models\Report;
