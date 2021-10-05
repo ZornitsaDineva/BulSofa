@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Auth;
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
-        // 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
+        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
     ],
     function () {
 

@@ -20,8 +20,12 @@ class PostSeeder extends Seeder
         $faker = Factory::create();
         $faker->locale('en_GB');
 
-        $numberOfUsers = 329;
-        $numberOfAds = 329;
+        $cities = 329;
+        $subcategories = 65;
+
+
+        $numberOfAds = $cities * $subcategories;
+        $numberOfUsers = ceil($numberOfAds / 2);
         $numberOfPromoted = ceil($numberOfAds / 5);
 
         $this->command->info("Generating $numberOfUsers fake users..");
