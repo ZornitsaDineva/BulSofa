@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class DatabaseSeeder extends Seeder
 {
@@ -27,21 +28,25 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Cities Seeded!');
 
         //Create Categories
-        $path = base_path('database/seeders/category.sql');
+        $path = base_path('database/seeders/categories.sql');
         $this->command->info("Seeding $path");
         DB::unprepared(file_get_contents($path));
         $this->command->info('Categories Seeded!');
 
         //Create SubCategories
-        $path = base_path('database/seeders/subcategory.sql');
+        $path = base_path('database/seeders/subcategories.sql');
         $this->command->info("Seeding $path");
         DB::unprepared(file_get_contents($path));
         $this->command->info('Sub Categories Seeded!');
 
+        Schema::disableForeignKeyConstraints();
         $this->command->info("Emptying Tables..");
-        DB::table("users")->truncate();
-        DB::table("posts")->truncate();
+        DB::table("featureds")->truncate();
         DB::table("postimages")->truncate();
+        DB::table("favourites")->truncate();
+        DB::table("posts")->truncate();
+        DB::table("users")->truncate();
+        Schema::enableForeignKeyConstraints();
 
         $this->command->info("Emptying Image Folders..");
         /* Delete previous images*/
@@ -56,7 +61,6 @@ class DatabaseSeeder extends Seeder
             if (is_file($file))
                 unlink($file);
         }
-
 
     }
 }

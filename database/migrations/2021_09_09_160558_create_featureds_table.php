@@ -15,7 +15,7 @@ class CreateFeaturedsTable extends Migration
     {
         Schema::create('featureds', function (Blueprint $table) {
             $table->increments('featured_id');
-            $table->integer("post_id");
+            $table->integer("post_id")->unsigned();
             $table->timestamps();
         });
     }

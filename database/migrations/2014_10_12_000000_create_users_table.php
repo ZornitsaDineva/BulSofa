@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             /* Required on Sign Up */
-            $table->id();
+            $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
             /* Can Give Later */
             $table->text('info')->nullable();
             $table->string('mobile')->nullable();
-            $table->integer('city_id')->nullable();
+            $table->integer('city_id')->nullable()->unsigned();
             $table->integer('user_type')->default(0);
             $table->tinyInteger('account_status')->default(1);
             $table->integer('user_balance')->default(0);

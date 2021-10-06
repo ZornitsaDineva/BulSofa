@@ -15,8 +15,8 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->increments('message_id');
-            $table->integer('sender_id')->default(0);
-            $table->integer('receiver_id')->default(0);
+            $table->integer('sender_id')->default(0)->unsigned();
+            $table->integer('receiver_id')->default(0)->unsigned();
             $table->string('thread');
             $table->tinyInteger('read_status')->default(0);
             $table->text('message')->nullable();

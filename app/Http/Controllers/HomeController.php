@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Session;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
+use Illuminate\Session;
+use Auth;
 
 
 /* Models */
@@ -18,6 +19,7 @@ use App\Models\Favourites;
 use App\Models\Featured;
 use App\Models\RechargeRequest;
 use App\Models\AdminMessage;
+use Illuminate\Support\Facades\Lang;
 
 session_start();
 
@@ -94,7 +96,7 @@ class HomeController extends Controller
      */
     public function balance()
     {
-        $userid = \Auth::user()->id;
+        $userid = Auth::user()->id;
 
         //7 day ago
         $startDate = date('Y-m-d 00:00:00', strtotime('-7 days'));
@@ -134,7 +136,7 @@ class HomeController extends Controller
         $rechargeRequest->request_status = 1; //1 = new
         $rechargeRequest->save();
 
-        Session::put('message', array(
+        Session()->put('message', array(
             'title' => __('Request Sent'),
             'body' =>__('Your account balance recharge request has been sent for approval.')
             ,
@@ -190,7 +192,7 @@ class HomeController extends Controller
 
         if ($generatedCode != $code) {
             //This is not the right url
-            Session::put('message', array(
+            Session()->put('message', array(
                 'title' => __('Error'),
                 'body' => __('Something wrong with the link you tried to access'),
                 'type' => 'danger'
@@ -293,7 +295,7 @@ class HomeController extends Controller
         $userData->save();
 
         //Message for Notification Builder
-        Session::put('message', array(
+        Session()->put('message', array(
             'title' => __('Updated'),
             'body' => __('Your account detail has been updated'),
             'type' => 'success'
@@ -308,15 +310,15 @@ class HomeController extends Controller
      */
     public function postAd()
     {
-        $errors = Session::get('errors');
+        $errors = Session()->get('errors');
         if (isset($errors)) {
             //This is a validation redirect, dont empty image cache
         } else {
             //This is a new form , empty image cache
-            $folder = Session::get('post-image-cache');
+            $folder = Session()->get('post-image-cache');
             if ($folder) {
                 rrmdir(base_path("public/images/temp/$folder/"));
-                Session::forget('post-image-cache');
+                Session()->forget('post-image-cache');
             }
         }
 
@@ -338,11 +340,11 @@ class HomeController extends Controller
      */
     public function postImageUpload(Request $request)
     {
-        $folder = Session::get('post-image-cache');
+        $folder = Session()->get('post-image-cache');
         if (!$folder) {
             $user = \Auth::user();
             $folder = $user->id . "_" . uniqid();
-            Session::put('post-image-cache', $folder);
+            Session()->put('post-image-cache', $folder);
         }
 
         $files = $request->file('file');
@@ -383,7 +385,7 @@ class HomeController extends Controller
     public function postImageDeleteCache(Request $request)
     {
         $fileToDelete = $request->uploadname;
-        $folder = Session::get('post-image-cache');
+        $folder = Session()->get('post-image-cache');
         if ($folder) {
             unlink(base_path("public/images/temp/$folder/$fileToDelete"));
             unlink(base_path("public/images/temp/$folder/thumb_$fileToDelete"));
@@ -455,7 +457,7 @@ class HomeController extends Controller
 
 
         $images = json_decode($request->imagenames);
-        $folder = Session::get('post-image-cache');
+        $folder = Session()->get('post-image-cache');
 
         foreach ($images as $orig => $filename) {
             $tempPath = base_path("public/images/temp/$folder/$filename");
@@ -482,7 +484,7 @@ class HomeController extends Controller
         rmdir(base_path("public/images/temp/$folder"));
 
         //Message for Notification Builder
-        Session::put('message', array(
+        Session()->put('message', array(
             'title' => __('Ad Posted'),
             'body' => __('Ad has been posted'),
             'type' => 'success'
@@ -497,15 +499,15 @@ class HomeController extends Controller
      */
     public function editAd($post_id)
     {
-        $errors = Session::get('errors');
+        $errors = Session()->get('errors');
         if (isset($errors)) {
             //This is a validation redirect, dont empty image cache
         } else {
             //This is a new form , empty image cache
-            $folder = Session::get('post-image-cache');
+            $folder = Session()->get('post-image-cache');
             if ($folder) {
                 rrmdir(base_path("public/images/temp/$folder/"));
-                Session::forget('post-image-cache');
+                Session()->forget('post-image-cache');
             }
         }
 
@@ -544,14 +546,14 @@ class HomeController extends Controller
             $postImage->delete();
 
             //Message for Notification Builder
-            Session::put('message', array(
+            Session()->put('message', array(
                 'title' => __('Ad Image Deleted'),
                 'body' => __('image deleted'),
                 'type' => 'success'
             ));
         } else {
             //Message for Notification Builder
-            Session::put('message', array(
+            Session()->put('message', array(
                 'title' => __('This ad needs atleast 1 image.'),
                 'body' => __('add one more image before deleting this'),
                 'type' => 'warning'
@@ -603,7 +605,7 @@ class HomeController extends Controller
 
         if (strlen($request->imagenames) > 5) {
             $images = json_decode($request->imagenames);
-            $folder = Session::get('post-image-cache');
+            $folder = Session()->get('post-image-cache');
 
             foreach ($images as $orig => $filename) {
                 $tempPath = base_path("public/images/temp/$folder/$filename");
@@ -631,7 +633,7 @@ class HomeController extends Controller
         }
 
         //Message for Notification Builder
-        Session::put('message', array(
+        Session()->put('message', array(
             'title' => __('Ad Updated'),
             'body' => __('Ad has been updated'),
             'type' => 'success'
@@ -664,7 +666,7 @@ class HomeController extends Controller
         $post->delete();
 
 //        //Message for Notification Builder
-        Session::put('message', array(
+        Session()->put('message', array(
             'title' => __('Ad Deleted'),
             'body' => __('Ad has been permenently deleted'),
             'type' => 'success'
@@ -684,7 +686,7 @@ class HomeController extends Controller
                 ->first();
 
         if ($already) {
-            Session::put('message', array(
+            Session()->put('message', array(
                 'title' => __('You Reported this already'),
                 'body' => __('Be patient we will see it'),
                 'type' => 'warning'
@@ -708,7 +710,7 @@ class HomeController extends Controller
         $report->report_status = 0; //0 means new
         $report->save();
 
-        Session::put('message', array(
+        Session()->put('message', array(
             'title' => __('Ad Reported'),
             'body' => __('We will see your complaint shortly'),
             'type' => 'success'
@@ -728,8 +730,8 @@ class HomeController extends Controller
                 ->where("user_id", $user_id)
                 ->first();
         if ($already) {
-            Session::put('message', array(
-                'title' => __('Already in favorite'),
+            Session()->put('message', array(
+                'title' =>__('Already in favorite'),
                 'body' => __('You can see this ad on your dashboard > favorites'),
                 'type' => 'warning'
             ));
@@ -740,7 +742,7 @@ class HomeController extends Controller
             $favourite->post_id = $id;
             $favourite->save();
 
-            Session::put('message', array(
+            Session()->put('message', array(
                 'title' => __('Added to favorites'),
                 'body' => __('You will see this ad on your dashboard > favorites'),
                 'type' => 'success'
@@ -766,14 +768,14 @@ class HomeController extends Controller
 
         if (!$postToPromote) {
             //Invalid Post Selected
-            Session::put('message', array(
+            Session()->put('message', array(
                 'title' => __('This ad doesnt exist'),
                 'body' => __('This ad does not exist, or it does not belong to you.'),
                 'type' => 'danger'
             ));
         } elseif ($already) {
             //Already running promotion
-            Session::put('message', array(
+            Session()->put('message', array(
                 'title' => __('Already Running Promotion'),
                 'body' => __('You can see this ad on your dashboard > balance'),
                 'type' => 'warning'
@@ -781,7 +783,7 @@ class HomeController extends Controller
         } else {
             //Insufficient Funds
             if ($user->user_balance < 100) {
-                Session::put('message', array(
+                Session()->put('message', array(
                     'title' => __('Insufficient Funds'),
                     'body' => __('You need 100EUR for promoting an ad 7 days, please refill'),
                     'type' => 'danger'
@@ -798,7 +800,7 @@ class HomeController extends Controller
                 $featured->post_id = $id;
                 $featured->save();
 
-                Session::put('message', array(
+                Session()->put('message', array(
                     'title' => __('Ad Promoted to show as the top ad'),
                     'body' => __('Тhis ad will be on top 2 on all ads for 7 days'),
                     'type' => 'success'
@@ -829,7 +831,7 @@ class HomeController extends Controller
      */
     public function sendAdminMessage(Request $request)
     {
-        Session::put('message', array(
+        Session()->put('message', array(
             'title' => __('Admin Message'),
             'body' => __('You send mеssage to our administrator'),
             'type' => 'success'

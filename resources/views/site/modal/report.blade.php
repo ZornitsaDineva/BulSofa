@@ -17,7 +17,7 @@
                         @else
                         <h3>@lang('Report This Ad')</h3>
                         <p>@lang('We are trying our best to bring you the best advertisements. If you have anything to say about this particular post please leave your comment.')</p>
-                        {!! Form::open([ 'url' => 'report','method' => 'post']) !!}
+                        {!! Form::open([ 'url' => LaravelLocalization::localizeUrl('/report'),'method' => 'post']) !!}
                         <div class="form-group">
                             <label class="control-label">@lang('Your Name')</label>
                             {!! Form::hidden('post_id', $adDetails->post_id) !!}

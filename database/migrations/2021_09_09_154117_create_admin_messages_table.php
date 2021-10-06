@@ -15,7 +15,7 @@ class CreateAdminMessagesTable extends Migration
     {
         Schema::create('admin_messages', function (Blueprint $table) {
             $table->increments('admin_message_id');
-            $table->integer('sender_id')->default(0);
+            $table->integer('sender_id')->unsigned();
             $table->tinyInteger('read_status')->default(0);
             $table->text('comment');
             $table->text('response');

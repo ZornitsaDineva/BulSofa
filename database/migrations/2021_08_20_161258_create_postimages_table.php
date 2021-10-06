@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReportsTable extends Migration
+class CreatePostImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateReportsTable extends Migration
      */
     public function up()
     {
-        Schema::create('reports', function (Blueprint $table) {
-            $table->increments('report_id');
-            $table->integer('user_id')->unsigned();
+        Schema::create('postimages', function (Blueprint $table) {
+            $table->increments('postimage_id');
             $table->integer('post_id')->unsigned();
-            $table->string('reason');
-            $table->text('message');
-            $table->boolean('report_status');
+            $table->string('postimage_file');
+            $table->string('postimage_thumbnail');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateReportsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reports');
+        Schema::dropIfExists('postimages');
     }
 }
