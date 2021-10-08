@@ -17,3 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/threads/{id}', [\App\Http\Controllers\MessengerController::class,'index']);
+
+Route::get('/thread/{code}/{reader_id}', [\App\Http\Controllers\MessengerController::class,'getMessageThread']);
+
+Route::post('/submitmessage',[\App\Http\Controllers\MessengerController::class,'sendMessage']);
+
+Route::get('/unreadmessages/{user_id}', [\App\Http\Controllers\MessengerController::class,'getUnreadCount']);
+
+

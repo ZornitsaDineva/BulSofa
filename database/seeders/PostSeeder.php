@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Faker\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class PostSeeder extends Seeder
 {
@@ -23,10 +24,12 @@ class PostSeeder extends Seeder
         $cities = 329;
         $subcategories = 65;
 
-
-        $numberOfAds = $cities * $subcategories;
+        $numberOfAds =25;
+        //$numberOfAds = $cities * $subcategories;
         $numberOfUsers = ceil($numberOfAds / 2);
         $numberOfPromoted = ceil($numberOfAds / 5);
+
+
 
         $this->command->info("Generating $numberOfUsers fake users..");
 
@@ -63,15 +66,15 @@ class PostSeeder extends Seeder
                 'city_id' => $faker->numberBetween(1, 329),
                 'subcategory_id' => $faker->numberBetween(2, 65),
                 'ad_type' => "newsell",
-                'ad_title' => "newsell",
+                'ad_title' => $faker->realText(10,1),
                 'item_condition' => $types[$faker->numberBetween(0, 1)],
                 'item_price' => $faker->randomFloat(2, 10, 500000),
                 'price_negotiable' => '0',
                 'delivery' => "In Person",
                 'status' => 1,
                 'views' => mt_rand(0, 1000),
-                'short_description' => "loren ipsum",
-                'long_description' => "loren ipsum long....",
+                'short_description' => $faker->realText(50,2),
+                'long_description' => $faker->realText(200,5),
                 'created_at' => $faker->dateTimeBetween('-5 months', 'now')
             ])->post_id;
 

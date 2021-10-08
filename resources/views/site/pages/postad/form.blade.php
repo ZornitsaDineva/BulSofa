@@ -10,24 +10,24 @@
             <ol class="breadcrumb">
                 <li><a href="{{url('/dashboard')}}">@lang('Home')</a></li>
                 <li>@lang('Edit My Ad')</li>
-            </ol><!-- breadcrumb -->						
+            </ol><!-- breadcrumb -->
             <h2 class="title">@lang('Edit My Ad')</h2>
         </div><!-- banner -->
-        @include('site.pages.dashboard.menu')	
+        @include('site.pages.dashboard.menu')
         @else
         <div class="breadcrumb-section">
             <!-- breadcrumb -->
             <ol class="breadcrumb">
                 <li><a href="index.html">@lang('Home')</a></li>
                 <li>@lang('Ad Post')</li>
-            </ol><!-- breadcrumb -->						
+            </ol><!-- breadcrumb -->
             <h2 class="title">@lang('Post Your Ad')</h2>
         </div><!-- banner -->
         @endif
 
         <div class="adpost-details">
-            <div class="row">	
-                <div class="col-md-9">    
+            <div class="row">
+                <div class="col-md-9">
                     @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -39,11 +39,11 @@
                     @endif
 
                     <fieldset>
-                        @if(isset($postData))                        
-                        {!! Form::model($postData,['class' => 'new-post-form','id' => 'new-post-form','url' => 'edit-ad/submit','method' => 'post','enctype'=> 'multipart/form-data']) !!}
+                        @if(isset($postData))
+                        {!! Form::model($postData,['class' => 'new-post-form','id' => 'new-post-form','url' => LaravelLocalization::localizeUrl(/'edit-ad/submit'),'method' => 'post','enctype'=> 'multipart/form-data']) !!}
                         <input type="hidden" name="post_id" value="{{$postData->post_id}}" />
                         @else
-                        {!! Form::open(['class' => 'new-post-form','id' => 'new-post-form', 'url' => 'post-ad/submit','method' => 'post', 'enctype'=>'multipart/form-data']) !!}
+                        {!! Form::open(['class' => 'new-post-form','id' => 'new-post-form', 'url' => LaravelLocalization::localizeUrl(/'post-ad/submit'),'method' => 'post', 'enctype'=>'multipart/form-data']) !!}
                         @endif
                         <div class="section postdetails">
                             <h4>@lang('Sell an item or service') <span class="pull-right">* @lang('Mandatory Fields')</span></h4>
@@ -67,14 +67,14 @@
                                     <a class="btn btn-select" data-toggle="modal" data-target="#popupSelectModal" data-href="{{url('ajax/categories')}}" href="#">
                                         <img id="category-selector-image" src='{{asset("images/category/gift_item.png")}}' alt="Images">
                                         <span id="category-selector-parent-text">{{$textCategory}}</span>
-                                        <span>&nbsp;&nbsp; &gt; &nbsp;&nbsp;</span> 
-                                        <span id='category-selector-text' class="change-text">{{$textSubcategory}}</span> 
+                                        <span>&nbsp;&nbsp; &gt; &nbsp;&nbsp;</span>
+                                        <span id='category-selector-text' class="change-text">{{$textSubcategory}}</span>
                                         <i class="fa fa-angle-down pull-right"></i>
-                                    </a>                                       
-                                    {!! Form::hidden('subcategory_id', null , ['form'=>'new-post-form','id' => 'category-selector-value']) !!}                                    
+                                    </a>
+                                    {!! Form::hidden('subcategory_id', null , ['form'=>'new-post-form','id' => 'category-selector-value']) !!}
                                 </div>
                             </div>
-                            {{--@if(!isset($postData))--}}    
+                            {{--@if(!isset($postData))--}}
                             <div class="row form-group">
                                 <label class="col-sm-3 label-title">@lang('Location')</label>
                                 <div class="col-sm-9">
@@ -96,9 +96,9 @@
                                     }
                                     ?>
                                     <a class="btn btn-select" data-toggle="modal" data-target="#popupSelectModal" data-href="{{url('ajax/locations')}}" href="#">
-                                        <span id='location-selector-text' class="change-text">{{$city_text}}</span> 
+                                        <span id='location-selector-text' class="change-text">{{$city_text}}</span>
                                         <i class="fa fa-angle-down pull-right"></i>
-                                    </a>                                                                                                               
+                                    </a>
                                     {!! Form::hidden('city_id', $city_id , ['form'=>'new-post-form','id' => 'location-selector-value']) !!}
                                     @include('site.common.categorymodal')
                                 </div>
@@ -109,15 +109,15 @@
                                 <div class="col-sm-9">
 
                                     @if (old('ad_type') == 'newbuy')
-                                    <input type="radio" name="ad_type" form="new-post-form" value="newsell" id="newsell"> <label for="newsell">@lang('I want to sell')</label>                                    
-                                    <input type="radio" checked="" name="ad_type" form="new-post-form" value="newbuy" id="newbuy"> <label for="newbuy">@lang('I want to rent out')</label>	                                    
+                                    <input type="radio" name="ad_type" form="new-post-form" value="newsell" id="newsell"> <label for="newsell">@lang('I want to sell')</label>
+                                    <input type="radio" checked="" name="ad_type" form="new-post-form" value="newbuy" id="newbuy"> <label for="newbuy">@lang('I want to rent out')</label>
                                     @elseif(isset($postData) && ($postData->ad_type == 'newbuy'))
-                                    <input type="radio" name="ad_type" form="new-post-form" value="newsell" id="newsell"> <label for="newsell">@lang('I want to sell')</label>                                    
-                                    <input type="radio" checked="" name="ad_type" form="new-post-form" value="newbuy" id="newbuy"> <label for="newbuy">@lang('I want to rent out')</label>	                                    
+                                    <input type="radio" name="ad_type" form="new-post-form" value="newsell" id="newsell"> <label for="newsell">@lang('I want to sell')</label>
+                                    <input type="radio" checked="" name="ad_type" form="new-post-form" value="newbuy" id="newbuy"> <label for="newbuy">@lang('I want to rent out')</label>
                                     @else
-                                    <input type="radio" checked="" name="ad_type" form="new-post-form" value="newsell" id="newsell"> <label for="newsell">@lang('I want to sell')</label>                                    
-                                    <input type="radio" name="ad_type" form="new-post-form" value="newbuy" id="newbuy"> <label for="newbuy">@lang('I want to rent out')</label>	                                    
-                                    @endif                                    
+                                    <input type="radio" checked="" name="ad_type" form="new-post-form" value="newsell" id="newsell"> <label for="newsell">@lang('I want to sell')</label>
+                                    <input type="radio" name="ad_type" form="new-post-form" value="newbuy" id="newbuy"> <label for="newbuy">@lang('I want to rent out')</label>
+                                    @endif
 
                                     @if ($errors->has('ad_type'))
                                     <br/>
@@ -135,25 +135,25 @@
                                     <span class="text-danger">
                                         <i class="fa fa-warning"></i> {{ $errors->first('ad_title') }}
                                     </span>
-                                    @endif                                    
+                                    @endif
                                 </div>
                             </div>
 
                             <div class="row form-group add-image">
                                 <label class="col-sm-3 label-title">@lang('Photos for your ad') <span class="required">*</span><span>(@lang('This will be your cover photo'))</span> </label>
-                                <div class="col-sm-9">   
+                                <div class="col-sm-9">
                                     @if(isset($postData))
                                     <div class="dropzone dropzone-previews oldimagesdrop">
                                         @foreach($postData->postimages as $aPostImage)
                                         <div class="dz-preview dz-image-preview">
-                                            <div class="dz-image"><img data-dz-thumbnail="" alt="20161222_145700.jpg" src="{{asset($aPostImage->postimage_thumbnail)}}"></div> 
+                                            <div class="dz-image"><img data-dz-thumbnail="" alt="20161222_145700.jpg" src="{{asset($aPostImage->postimage_thumbnail)}}"></div>
                                             <a class="dz-remove" href="{{url('delete-post-image').'/'.$aPostImage->postimage_id}}">Remove file</a>
                                         </div>
                                         @endforeach
                                     </div>
                                     @endif
                                     <div id="uploaded-image-holder" class="dropzone-previews dropzone dz-clickable">
-                                        <div class="dz-default dz-message"><span>Drop files here to upload</span></div>                                        
+                                        <div class="dz-default dz-message"><span>Drop files here to upload</span></div>
                                     </div>
                                     <button id="uploadopenbtn" type="button" class="btn btn-default">Select files for upload.. (max 4)</button>
                                     @if ($errors->has('imagenames'))
@@ -161,13 +161,13 @@
                                         <i class="fa fa-warning"></i> Please upload atleast 1 image
                                     </span>
                                     @endif
-                                </div>                                
+                                </div>
                             </div>
 
 
                             <div class="row form-group">
                                 <label class="col-sm-3">@lang('Condition')<span class="required">*</span></label>
-                                <div class="col-sm-9">      
+                                <div class="col-sm-9">
 
                                     @if(old('item_condition') == 'New')
                                     <input type="radio" checked="" form="new-post-form" name="item_condition" value="New" id="new" checked=""> <label for="new">@lang('New')</label>
@@ -199,16 +199,16 @@
                                     </span>
                                     @endif
                                     <div class="checkbox">
-                                        <label for="negotiable"><input type="checkbox" form="new-post-form" name="negotiable" value="1" id="negotiable"> @lang('Negotiable')</label>                                    
-                                    </div>                                    
+                                        <label for="negotiable"><input type="checkbox" form="new-post-form" name="negotiable" value="1" id="negotiable"> @lang('Negotiable')</label>
+                                    </div>
                                 </div>
-                            </div> 
-                                                      
+                            </div>
+
 
                             <div class="row form-group item-description">
                                 <label class="col-sm-3 label-title">@lang('Short Description')<span class="required">*</span></label>
                                 <div class="col-sm-9">
-                                    {!! Form::textarea('short_description', null , ['form'=>'new-post-form', 'class' => 'form-control',"id"=>"short_description", "rows"=>"3" ]) !!}                                    
+                                    {!! Form::textarea('short_description', null , ['form'=>'new-post-form', 'class' => 'form-control',"id"=>"short_description", "rows"=>"3" ]) !!}
                                     @if ($errors->has('short_description'))
                                     <span class="text-danger">
                                         <i class="fa fa-warning"></i> {{ $errors->first('short_description') }}
@@ -232,8 +232,8 @@
                                 <div class="col-sm-9 col-sm-offset-3">
                                     <p><span id="desc_char_left">5000</span>@lang(' characters left')</p>
                                 </div>
-                            </div>		
-                          					
+                            </div>
+
                         </div>
                         <!-- section -->
 
@@ -245,17 +245,17 @@
                                 <div class="col-sm-9">
                                     <input type="text" name="name" readonly="" class="form-control" value="{{ Auth::user()->name }}">
                                 </div>
-                            </div>    
+                            </div>
                             <div class="row form-group">
                                 <label class="col-sm-3 label-title">@lang('Mobile Number')<span class="required">*</span></label>
                                 <div class="col-sm-9">
-                                    {!! Form::text('contact_phone', $userData->mobile , ['form'=>'new-post-form', 'class' => 'form-control' ]) !!}                                    
+                                    {!! Form::text('contact_phone', $userData->mobile , ['form'=>'new-post-form', 'class' => 'form-control' ]) !!}
                                 </div>
-                            </div>                            
+                            </div>
                         </div><!-- section -->
                         @endif
 
-                               
+
 
 
                         {!! Form::hidden('imagenames', null , ['id' => 'imagenames', 'form'=>'new-post-form', 'class' => 'form-control' ]) !!}
@@ -273,11 +273,11 @@
                         {!! Form::close() !!}
 
                         <div class="dropzone-filedrop-area">
-                            {!! Form::open(['url' => 'upload','id'=>'dropzoneinst', 'class'=>'dropzone', 'method' => 'post', 'enctype'=>'multipart/form-data']) !!}                                    
+                            {!! Form::open(['url' => 'upload','id'=>'dropzoneinst', 'class'=>'dropzone', 'method' => 'post', 'enctype'=>'multipart/form-data']) !!}
                             <div class="fallback">
                                 <input name="file" type="file" multiple />
-                            </div>                                    
-                            {!! Form::close() !!}  
+                            </div>
+                            {!! Form::close() !!}
                         </div>
 
                     </fieldset>
@@ -287,9 +287,9 @@
                 </div>
 
 
-                <!-- quick-rules -->	
+                <!-- quick-rules -->
                 <div class="col-md-3">
-                    @if(isset($postData)) 
+                    @if(isset($postData))
                     <div class="section quick-rules">
                         <h4>@lang('Help')</h4>
                         <p class="lead">@lang('To change location and contact info of your ad visit your ')
@@ -300,7 +300,7 @@
                     <div class="section quick-rules">
                         <h4>@lang('Quick rules')</h4>
                         <p class="lead">@lang('Posting an ad on ')
-                            <a href="#">BulSofa.com</a>                            
+                            <a href="#">BulSofa.com</a>
                             @lang(' is free! However, all ads must follow our rules'):</p>
 
                         <ul>
@@ -312,10 +312,10 @@
                             <li>@lang('Do not post images/text with profanity or hurtful content, doing so will result in account ban')</li>
                         </ul>
                     </div>
-                </div><!-- quick-rules -->	               
+                </div><!-- quick-rules -->
 
-            </div><!-- photos-ad -->				
-        </div>	        
+            </div><!-- photos-ad -->
+        </div>
 
     </div><!-- container -->
 </section><!-- main -->
@@ -323,7 +323,7 @@
 @include('site.common.categorymodal')
 @push('styles')
 <link rel="stylesheet" type="text/css" href="{{asset('site-assets/plugins/dropzone/dropzone.css')}}"/>
-@endpush                               
+@endpush
 @push('scripts')
 <!-- Dropzone -->
 <script type="text/javascript" src="{{asset('site-assets/plugins/dropzone/dropzone.js')}}"></script>
@@ -463,7 +463,7 @@ if (old('imagenames')) {
                                 };
 
                                 window.onbeforeunload = null;
-                  
+
 
 </script>
 @endpush

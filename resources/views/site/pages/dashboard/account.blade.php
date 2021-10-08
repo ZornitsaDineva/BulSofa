@@ -23,7 +23,7 @@
                 <!--profile page-->
 
                 <div class="col-sm-9">
-                    {!! Form::model($userData,['url' => 'account/update', 'class'=> 'form-horizontal', 'method' => 'post']) !!}
+                    {!! Form::model($userData,['url' =>LaravelLocalization::localizeUrl('/account/update'), 'class'=> 'form-horizontal', 'method' => 'post']) !!}
                     <div>
                         <!-- profile-details -->
                         <div class="profile-details section">

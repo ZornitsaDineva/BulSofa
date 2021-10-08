@@ -23,7 +23,6 @@ Route::group(
         'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
     ],
     function () {
-
         /* Site */
         Route::get('/', [\App\Http\Controllers\SiteController::class, 'index']);
         Route::get('/all-ads', [\App\Http\Controllers\AdSearchController::class, 'allAds']);
@@ -86,6 +85,15 @@ Route::group(
         Route::get('/threads', [\App\Http\Controllers\HomeController::class, 'threadsGet']);
 
         Route::post('/report', [\App\Http\Controllers\HomeController::class, 'reportAd']);
+        /* Account */
+        Route::post('/account/update', [\App\Http\Controllers\HomeController::class, 'accountUpdate']);
+
+        /* Recharge request */
+        Route::post('/balance-request', [\App\Http\Controllers\HomeController::class, 'requestRecharge']);
+
+        /* Post Ad */
+        Route::post('/post-ad/submit', [\App\Http\Controllers\HomeController::class, 'postAdSubmit']);
+        Route::post('/edit-ad/submit', [\App\Http\Controllers\HomeController::class, 'editAdSubmit']);
     }
 );
 
@@ -94,15 +102,6 @@ Route::group(
 Route::post('/upload', [\App\Http\Controllers\HomeController::class, 'postImageUpload']);
 Route::post('/upload-delete', [\App\Http\Controllers\HomeController::class, 'postImageDeleteCache']);
 
-/* Account */
-Route::post('/account/update', [\App\Http\Controllers\HomeController::class, 'accountUpdate']);
-
-/* Recharge request */
-Route::post('/balance-request', [\App\Http\Controllers\HomeController::class, 'requestRecharge']);
-
-/* Post Ad */
-Route::post('/post-ad/submit', [\App\Http\Controllers\HomeController::class, 'postAdSubmit']);
-Route::post('/edit-ad/submit', [\App\Http\Controllers\HomeController::class, 'editAdSubmit']);
 
 /**
  * Admin Panel Routes
@@ -188,4 +187,4 @@ Route::group(['prefix' => 'admin', 'middleware' => [CheckAdmin::class]], functio
 
 // Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

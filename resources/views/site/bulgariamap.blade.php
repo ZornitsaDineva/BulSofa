@@ -9,10 +9,10 @@
             stroke: #fff;
 
         }
-        .division{
-            opacity:0.35;
+        .divisions{
+            opacity:0.95;
         }
-        .division:hover{
+        .divisions:hover{
             opacity:0.65;
         }
         path.cities{

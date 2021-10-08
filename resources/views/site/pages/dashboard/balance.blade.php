@@ -30,7 +30,7 @@
                             @lang('Recharge your account')
                         </p>
 
-                        {!! Form::open(['url' => 'balance-request', 'class'=> 'form-horizontal', 'method' => 'post']) !!}
+                        {!! Form::open(['url' =>LaravelLocalization::localizeUrl('/balance-request'), 'class'=> 'form-horizontal', 'method' => 'post']) !!}
                         <div class="profile-details section">
                             <!-- form -->
 

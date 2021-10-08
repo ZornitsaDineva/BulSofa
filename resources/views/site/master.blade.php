@@ -12,9 +12,7 @@
 
         <!-- CSS -->
         <link rel="stylesheet" href="{{asset('site-assets/bootstrap-3.3.7/css/bootstrap.min.css')}}" >
-
-        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
-
+        <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha256-T/zFmO5s/0aSwc6ics2KLxlfbewyRz6UNw1s3Ppf5gE=" crossorigin="anonymous">-->
 
         <link rel="stylesheet" href="{{asset('site-assets/css/font-awesome/css/font-awesome.min.css')}}">
         <link rel="stylesheet" href="{{asset('site-assets/css/icofont/css/icofont.css')}}">
@@ -43,6 +41,7 @@
         <script src="{{asset('site-assets/js/jquery.min.js')}}"></script>
         <script src="{{asset('site-assets/js/modernizr.min.js')}}"></script>
         <script src="{{asset('site-assets/bootstrap-3.3.7/js/bootstrap.min.js')}}"></script>
+        <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha256-7dA7lq5P94hkBsWdff7qobYkp9ope/L5LQy2t/ljPLo=" crossorigin="anonymous"></script>-->
 
         <!-- animate css -->
         <link rel="stylesheet" href="{{asset('site-assets/css/animate.css')}}">
