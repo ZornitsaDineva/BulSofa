@@ -56,7 +56,6 @@ class Post extends Model
             ->first();
 
         if($featuredJoin){
-            return $featuredJoin;
 
             $offerStarted = $featuredJoin->created_at;
             $offerStarted = strtotime($offerStarted);

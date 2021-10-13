@@ -44,6 +44,10 @@ function rrmdirifold($dir) {
 
 function number($n)
 {
+    if (is_bool($n)) {
+        return "";
+    }
+
     return $n;
 }
 

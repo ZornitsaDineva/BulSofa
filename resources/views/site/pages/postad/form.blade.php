@@ -40,10 +40,10 @@
 
                     <fieldset>
                         @if(isset($postData))
-                        {!! Form::model($postData,['class' => 'new-post-form','id' => 'new-post-form','url' => LaravelLocalization::localizeUrl(/'edit-ad/submit'),'method' => 'post','enctype'=> 'multipart/form-data']) !!}
+                        {!! Form::model($postData,['class' => 'new-post-form','id' => 'new-post-form','url' => LaravelLocalization::localizeUrl('edit-ad/submit'),'method' => 'post','enctype'=> 'multipart/form-data']) !!}
                         <input type="hidden" name="post_id" value="{{$postData->post_id}}" />
                         @else
-                        {!! Form::open(['class' => 'new-post-form','id' => 'new-post-form', 'url' => LaravelLocalization::localizeUrl(/'post-ad/submit'),'method' => 'post', 'enctype'=>'multipart/form-data']) !!}
+                        {!! Form::open(['class' => 'new-post-form','id' => 'new-post-form', 'url' => LaravelLocalization::localizeUrl('post-ad/submit'),'method' => 'post', 'enctype'=>'multipart/form-data']) !!}
                         @endif
                         <div class="section postdetails">
                             <h4>@lang('Sell an item or service') <span class="pull-right">* @lang('Mandatory Fields')</span></h4>

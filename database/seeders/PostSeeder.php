@@ -24,8 +24,8 @@ class PostSeeder extends Seeder
         $cities = 329;
         $subcategories = 65;
 
-        $numberOfAds =25;
-        //$numberOfAds = $cities * $subcategories;
+        //$numberOfAds =25;
+        $numberOfAds = $cities * $subcategories;
         $numberOfUsers = ceil($numberOfAds / 2);
         $numberOfPromoted = ceil($numberOfAds / 5);
 
@@ -62,6 +62,7 @@ class PostSeeder extends Seeder
             $types = ['New', 'Used'];
 
             $postId = \App\Models\Post::create([
+                'post_id'=>$index,
                 'user_id' => $rndUser,
                 'city_id' => $faker->numberBetween(1, 329),
                 'subcategory_id' => $faker->numberBetween(2, 65),

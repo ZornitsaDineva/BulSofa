@@ -442,7 +442,7 @@ class HomeController extends Controller
         }
 
         //$post->contact_phone = $request->contact_phone;
-        //$post->city_id = $request->city_id;
+        $post->city_id = $request->city_id;
 
         $post->save();
 

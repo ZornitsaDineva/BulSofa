@@ -30,8 +30,6 @@ Route::group(
         Route::get('/ad/{id}/{title}', [\App\Http\Controllers\AdSearchController::class, 'adDetails']);
         Route::get('/ad/{id}', [\App\Http\Controllers\AdSearchController::class, 'adDetails']);
 
-
-
         /* Site Ajax Location and Categories */
         Route::get('/ajax/categories', [\App\Http\Controllers\SiteController::class, 'ajaxCategoryModal']);
         Route::get('/ajax/locations', [\App\Http\Controllers\SiteController::class, 'ajaxLocationModal']);
@@ -40,35 +38,30 @@ Route::group(
         Auth::routes();
 
         /* User */
-        // Route::get('/home', 'SiteController@index')->name('home');
+        Route::get('/home', [\App\Http\Controllers\SiteController::class,'index'])->name('home');
         Route::get('/dashboard', [\App\Http\Controllers\HomeController::class, 'dashboard']);
         Route::get('/favourites', [\App\Http\Controllers\HomeController::class, 'userFavourites']);
         Route::get('/account', [\App\Http\Controllers\HomeController::class, 'account']);
         Route::get('/messages', [\App\Http\Controllers\HomeController::class, 'messages']);
         Route::get('/message/{code}/{user}/{poster}', [\App\Http\Controllers\HomeController::class, 'viewMessage']);
-
         Route::get('/balance', [\App\Http\Controllers\HomeController::class, 'balance']);
 
         /* help site pages */
-
         Route::get('/help', [\App\Http\Controllers\HomeController::class, 'help'])->name('help');
         Route::post('/sendAdminMessage', [\App\Http\Controllers\HomeController::class, 'sendAdminMessage'])->name('sendAdminMessage');
-
-
 
         /* Ad management */
         Route::get('/post-ad', [\App\Http\Controllers\HomeController::class, 'postAd']);
         Route::get('/edit-ad/{id}', [\App\Http\Controllers\HomeController::class, 'editAd']);
-
         Route::get('/delete-ad/{id}', [\App\Http\Controllers\HomeController::class, 'deleteAd']);
 
 
         /* Edit ad */
         Route::get('/delete-post-image/{id}', [\App\Http\Controllers\HomeController::class, 'postImageEditRemove']);
-        //Route::any('/post-ad-image', 'HomeController@postAdImageHandler');
+        Route::any('/post-ad-image',  [\App\Http\Controllers\HomeController::class,'postAdImageHandler']);
 
         /* Report an ad */
-
+        Route::post('/report', [\App\Http\Controllers\HomeController::class, 'reportAd']);
 
         /* Favourite an And */
         Route::get('/favour/{id}', [\App\Http\Controllers\HomeController::class, 'favourAd']);
@@ -76,15 +69,10 @@ Route::group(
         /* Promote an Ad */
         Route::get('/promote-ad/{id}', [\App\Http\Controllers\HomeController::class, 'promoteAd']);
 
-
-
         /* Update View Count */
         Route::get('/ajax/view/{id}/{tok}', [\App\Http\Controllers\AdSearchController::class, 'ajaxView']);
-
-
         Route::get('/threads', [\App\Http\Controllers\HomeController::class, 'threadsGet']);
 
-        Route::post('/report', [\App\Http\Controllers\HomeController::class, 'reportAd']);
         /* Account */
         Route::post('/account/update', [\App\Http\Controllers\HomeController::class, 'accountUpdate']);
 
