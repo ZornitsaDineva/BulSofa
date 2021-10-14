@@ -210,7 +210,7 @@ class AdSearchController extends Controller
      * @param type $name
      * @return type
      */
-    public function adsByUser($id, $name)
+    public function adsByUser(Request $request, $id, $name)
     {
         View::share('condition_collapse', '');
         View::share('price_collapse', '');
@@ -226,9 +226,9 @@ class AdSearchController extends Controller
                     'categories.category_title_en',
                     'categories.category_title_bg',
                     'users.name',
-                    'users.city_id',
+                    // 'users.city_id',
                     'users.user_type',
-                    'cities.city_id',
+                    // 'cities.city_id',
                     'cities.city_title_en',
                     'cities.city_title_bg',
                     'divisions.division_id',
@@ -271,7 +271,7 @@ class AdSearchController extends Controller
         $ads = $query
                 ->orderBy('post_id', 'desc')
                 ->paginate(5)
-                ->appends(Input::except('page'));
+                ->appends($request->except('page'));
 
         //Cache Categories
         $categories = Cache::rememberForever('categories', function () {

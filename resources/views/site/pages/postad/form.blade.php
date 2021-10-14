@@ -147,18 +147,18 @@
                                         @foreach($postData->postimages as $aPostImage)
                                         <div class="dz-preview dz-image-preview">
                                             <div class="dz-image"><img data-dz-thumbnail="" alt="20161222_145700.jpg" src="{{asset($aPostImage->postimage_thumbnail)}}"></div>
-                                            <a class="dz-remove" href="{{url('delete-post-image').'/'.$aPostImage->postimage_id}}">Remove file</a>
+                                            <a class="dz-remove" href="{{url('delete-post-image').'/'.$aPostImage->postimage_id}}">@lang('Remove file')</a>
                                         </div>
                                         @endforeach
                                     </div>
                                     @endif
                                     <div id="uploaded-image-holder" class="dropzone-previews dropzone dz-clickable">
-                                        <div class="dz-default dz-message"><span>Drop files here to upload</span></div>
+                                        <div class="dz-default dz-message"><span>@lang('Drop files here to upload')</span></div>
                                     </div>
-                                    <button id="uploadopenbtn" type="button" class="btn btn-default">Select files for upload.. (max 4)</button>
+                                    <button id="uploadopenbtn" type="button" class="btn btn-default">@lang('files for upload.. (max 4)')</'button>
                                     @if ($errors->has('imagenames'))
                                     <span class="text-danger">
-                                        <i class="fa fa-warning"></i> Please upload atleast 1 image
+                                        <i class="fa fa-warning"></i> @lang('upload atleast 1 image')
                                     </span>
                                     @endif
                                 </div>

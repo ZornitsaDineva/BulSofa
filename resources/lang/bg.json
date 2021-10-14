@@ -258,7 +258,11 @@
      "Sorry":"Грешка",
     "Username or Password invalid":"Грешена парола или име",
     "The administrator is in the system":"Администраторът е в системата",
-    "Тhis ad will be on top 2 on all ads for 7 days":"Рекламата ще бъде в топ 2 за 7 дена"
+    "Тhis ad will be on top 2 on all ads for 7 days":"Рекламата ще бъде в топ 2 за 7 дена",
+    "Remove file":"Изтрийте файла",
+    "files for upload.. (max 4)":"файлове за качване.. (максимално 4)",
+    "upload atleast 1 image":"качете поне една картинка",
+    "Drop files here to upload":"Сложете файловете за да ги качите"
 
 
 
