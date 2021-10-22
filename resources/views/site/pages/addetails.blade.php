@@ -140,7 +140,7 @@
 
                             <ul class="list-inline">
                                 <li><a class="popupFacebook" data-href="{{url()->current()}}" href="#"><i class="fa fa-facebook-square"></i></a></li>
-                                <li><a class="popupTwitter" data-href="{{url()->current()}}" data-text='check it out {{$adDetails->ad_title}} at {{$adDetails->item_price}}-Tk @BulSofa.com' href="#"><i class="fa fa-twitter-square"></i></a></li>
+                                <!--<li><a class="popupTwitter" data-href="{{url()->current()}}" data-text='check it out {{$adDetails->ad_title}} at {{$adDetails->item_price}}-Tk @BulSofa.com' href="#"><i class="fa fa-twitter-square"></i></a></li>-->
                             </ul>
                         </div>
                         <!-- social-links -->
@@ -166,7 +166,7 @@
                         <ul>
                             <li><i class="fa fa-user-plus"></i><a href="{{url('ads-by').'/'.$adDetails->user->id.'/'.$adDetails->user->name}}">@lang("Ads by") <span>{{$adDetails->user->name}}</span></a></li>
                             <li><i class="fa fa-print"></i><a href="#" onclick="javascript:window.print();">@lang("Print this ad")</a></li>
-                            <li><i class="fa fa-reply"></i><a href="#">@lang("Send to a friend")</a></li>
+                            <!--<li><i class="fa fa-reply"></i><a href="#">@lang("Send to a friend")</a></li>-->
                             <li><i class="fa fa-heart-o"></i><a href="{{url('favour/'.$adDetails->post_id)}}">@lang("Save ad as Favorite")</a></li>
                             <li><i class="fa fa-exclamation-triangle"></i><a data-toggle="modal" data-target="#reportModal" href="#">@lang("Report this ad")</a></li>
                         </ul>

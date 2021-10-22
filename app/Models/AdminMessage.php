@@ -9,5 +9,5 @@ class AdminMessage extends Model
 {
     use HasFactory;
 
-    protected $primeryKey='admin_message_id';
+    protected $primaryKey='admin_message_id';
 }
