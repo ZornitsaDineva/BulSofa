@@ -63,6 +63,9 @@ Route::group(
         /* Report an ad */
         Route::post('/report', [\App\Http\Controllers\HomeController::class, 'reportAd']);
 
+         /*User Send to friend */
+         Route::post('/sendToFriend', [\App\Http\Controllers\HomeController::class,'sendToFriend']);
+
         /* Favourite an And */
         Route::get('/favour/{id}', [\App\Http\Controllers\HomeController::class, 'favourAd']);
 
@@ -111,22 +114,20 @@ Route::group(['prefix' => 'admin', 'middleware' => [CheckAdmin::class]], functio
     /* User recharge payments */
     Route::get('/payments', [\App\Http\Controllers\AdminController::class, 'rechargeDatatable']);
     Route::get('/payments/getdata', [\App\Http\Controllers\AdminController::class, 'rechargeDatatableGetData'])->name('datatables/rechargegetdata');
-
     Route::get('/payment/changeStatus/{status}/{id}', [\App\Http\Controllers\AdminController::class, 'rechargeChangeStatus']);
 
 
     /* Ad Posts Management */
     Route::get('/ads', [\App\Http\Controllers\AdminController::class, 'adsDatatable']);
     Route::get('/ads/getdata', [\App\Http\Controllers\AdminController::class, 'adsDatatableGetData'])->name('datatable/getdata');
-
     Route::get('/ads/changeStatus/{status}/{id}', [\App\Http\Controllers\AdminController::class, 'adsChangeStatus']);
 
 
     /* User Reports Management */
     Route::get('/ad/complains', [\App\Http\Controllers\AdminController::class, 'reportsDatatable']);
     Route::get('/ad/complains/getdata', [\App\Http\Controllers\AdminController::class, 'reportsDatatableGetData'])->name('datatable/getreportdata');
-
     Route::get('/ad/complain/end/{id}', [\App\Http\Controllers\AdminController::class, 'reportsEnd']);
+
 
     /*Admin Message Managment*/
     Route::get('/admin_messages', [\App\Http\Controllers\AdminController::class, 'adminMessagesDatatable']);
@@ -138,7 +139,6 @@ Route::group(['prefix' => 'admin', 'middleware' => [CheckAdmin::class]], functio
 
     /* Category Management */
     Route::get('/categories', [\App\Http\Controllers\AdminController::class, 'categoryView']);
-
     Route::get('/category/create', [\App\Http\Controllers\AdminController::class, 'categoryCreate']);
     Route::get('/category/edit/{category_id}', [\App\Http\Controllers\AdminController::class, 'categoryEdit']);
     Route::post('/category/save-category', [\App\Http\Controllers\AdminController::class, 'categorySaveCategory']);

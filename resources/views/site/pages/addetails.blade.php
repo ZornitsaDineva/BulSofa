@@ -166,7 +166,7 @@
                         <ul>
                             <li><i class="fa fa-user-plus"></i><a href="{{url('ads-by').'/'.$adDetails->user->id.'/'.$adDetails->user->name}}">@lang("Ads by") <span>{{$adDetails->user->name}}</span></a></li>
                             <li><i class="fa fa-print"></i><a href="#" onclick="javascript:window.print();">@lang("Print this ad")</a></li>
-                            <!--<li><i class="fa fa-reply"></i><a href="#">@lang("Send to a friend")</a></li>-->
+                            <li><i class="fa fa-reply"></i><a data-toggle="modal" data-target="#sendToFriend" href="#">@lang("Send to a friend")</a></li>
                             <li><i class="fa fa-heart-o"></i><a href="{{url('favour/'.$adDetails->post_id)}}">@lang("Save ad as Favorite")</a></li>
                             <li><i class="fa fa-exclamation-triangle"></i><a data-toggle="modal" data-target="#reportModal" href="#">@lang("Report this ad")</a></li>
                         </ul>
@@ -227,6 +227,8 @@
 </section><!-- main -->
 
 @include('site.modal.report', ['adDetails' => $adDetails])
+@include('site.modal.sendToFriend', ['adDetails' => $adDetails])
+
 @push('scripts')
 <script type="text/javascript">$(document).ready(function () {
         prodView('{{url("ajax/view/$adDetails->post_id/".csrf_token())}}');

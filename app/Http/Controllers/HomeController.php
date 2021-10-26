@@ -675,6 +675,23 @@ class HomeController extends Controller
         return Redirect::to('/dashboard');
     }
 
+    public function sendToFriend(Request $request)
+    {
+        $request->validate([
+            'post_id' => 'required',
+            'email' => 'required|email'
+        ]);
+
+
+
+        Session()->put('message', array(
+            'title' => __('Sent ad'),
+            'body' => __('You sent this ad to your friend'),
+            'type' => 'success'
+        ));
+
+        return Redirect::to("ad/$request->post_id");
+    }
 
     /**
      * Show report form for someones ad

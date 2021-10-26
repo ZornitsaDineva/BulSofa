@@ -1,4 +1,4 @@
-@if ($errors->any())
+@if ($errors->any() && !$errors->has('email'))
 <script type="text/javascript">
     $(window).on('load',function(){
         $('#reportModal').modal('show');
