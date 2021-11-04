@@ -262,7 +262,16 @@
     "Remove file":"Изтрийте файла",
     "files for upload.. (max 4)":"файлове за качване.. (максимално 4)",
     "upload atleast 1 image":"качете поне една картинка",
-    "Drop files here to upload":"Сложете файловете за да ги качите"
+    "Drop files here to upload":"Сложете файловете за да ги качите",
+    "Hello, see this post:":"Здравей, виж тази реклама",
+    "Regards,":"Поздрави,",
+    "Send this ad":"Изпрати тази реклама",
+    "Your friend`s email:":"Имейла на твоя приятел:",
+    "You sent this ad to your friend":"Ти изпрати имейл на твоя приятел",
+    "Sent ad":"Рекламата изпратена",
+    "Hello,see this post:":"Здравей, виж тази реклама:",
+    "Regards":"Поздрави"
+
 
 
 

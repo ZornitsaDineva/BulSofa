@@ -670,7 +670,7 @@ textarea {
     background-color: #f6f6f6;
     border-top: 1px solid #eeeeee;
     min-height: 35px;
-    position: absolute;
+    position: relative;
     bottom: 0;
     right:-1px;
     width:100%;
@@ -682,6 +682,7 @@ textarea {
 .ad-meta .meta-content {
     /*display:table-cell;*/
     vertical-align:middle;
+    display: inline-block;
 }
 
 .ad-meta .meta-content .dated {
@@ -4132,9 +4133,9 @@ input, select, a, .transition,
 .custom-list-item {
     border: 1px solid #f3f3f3;
     margin: 18px 0;
-    min-height: 152px;
+    min-height: fit-content;
     border-radius:2px;
-    max-height:152px;
+    max-height:fit-content;
 }
 
 /* Modal Fix */

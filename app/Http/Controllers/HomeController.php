@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
 use Illuminate\Session;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 
 /* Models */
@@ -34,7 +35,7 @@ class HomeController extends Controller
      * @return void
      */
 
-     //Layout holder
+    //Layout holder
     private $layout;
 
     public function __construct()
@@ -62,12 +63,12 @@ class HomeController extends Controller
     public function dashboard()
     {
         $userAds = Post::where("user_id", \Auth::user()->id)
-                ->orderBy('post_id', 'desc')
-                ->get();
+            ->orderBy('post_id', 'desc')
+            ->get();
 
         //Load Component
         $this->layout['siteContent'] = view('site.pages.dashboard')
-                ->with("userAds", $userAds);
+            ->with("userAds", $userAds);
 
 
         //return view
@@ -77,12 +78,12 @@ class HomeController extends Controller
     public function userFavourites()
     {
         $favouriteAds = Favourites::where("user_id", \Auth::user()->id)
-                ->orderBy('post_id', 'desc')
-                ->get();
+            ->orderBy('post_id', 'desc')
+            ->get();
 
         //Load Component
         $this->layout['siteContent'] = view('site.pages.dashboard.favourites')
-                ->with("favAds", $favouriteAds);
+            ->with("favAds", $favouriteAds);
 
 
         //return view
@@ -105,14 +106,14 @@ class HomeController extends Controller
         $endDate = date('Y-m-d 23:59:59', time());
 
         $featureds = Post::join('featureds', 'featureds.post_id', '=', 'posts.post_id')
-                ->where("posts.user_id", $userid)
-                ->where('featureds.created_at', '>', $startDate)
-                ->where('featureds.created_at', '<', $endDate)
-                ->get();
+            ->where("posts.user_id", $userid)
+            ->where('featureds.created_at', '>', $startDate)
+            ->where('featureds.created_at', '<', $endDate)
+            ->get();
 
         //Load Component
         $this->layout['siteContent'] = view('site.pages.dashboard.balance')
-                ->with("featured", $featureds);
+            ->with("featured", $featureds);
 
 
         //return view
@@ -138,15 +139,14 @@ class HomeController extends Controller
 
         Session()->put('message', array(
             'title' => __('Request Sent'),
-            'body' =>__('Your account balance recharge request has been sent for approval.')
-            ,
+            'body' => __('Your account balance recharge request has been sent for approval.'),
             'type' => 'success'
         ));
 
         return Redirect::to('/balance');
     }
 
-     /**
+    /**
      * Show open threads
      * @return type
      */
@@ -216,11 +216,11 @@ class HomeController extends Controller
         return view('site.master', $this->layout);
     }
 
-//    public function threadsGet(){
-//
-//       }
+    //    public function threadsGet(){
+    //
+    //       }
 
-       /**
+    /**
      * Profile Info Edit Form
      * @return type
      */
@@ -328,7 +328,7 @@ class HomeController extends Controller
 
         //Load Component
         $this->layout['siteContent'] = view('site.pages.postad.form')
-                ->with('userData', $userData);
+            ->with('userData', $userData);
 
         //return view
         return view('site.master', $this->layout);
@@ -514,22 +514,22 @@ class HomeController extends Controller
         $authUser = \Auth::user();
         $userData = User::find($authUser->id);
         $postData = Post::where("post_id", $post_id)
-                ->where("user_id", $authUser->id)
-                ->first();
+            ->where("user_id", $authUser->id)
+            ->first();
 
-//        echo "<pre>";
-//        print_r($postData);
-//        exit();
+        //        echo "<pre>";
+        //        print_r($postData);
+        //        exit();
         //Load Component
         $this->layout['siteContent'] = view('site.pages.postad.form')
-                ->with('postData', $postData)
-                ->with('userData', $userData);
+            ->with('postData', $postData)
+            ->with('userData', $userData);
 
         //return view
         return view('site.master', $this->layout);
     }
 
-     /**
+    /**
      * Remove image from edit post
      * @param type $id
      */
@@ -570,7 +570,7 @@ class HomeController extends Controller
             'ad_title' => 'required|string|max:200',
             'item_condition' => 'required',
             'subcategory_id' => 'required',
-            'city_id'=>'required',
+            'city_id' => 'required',
             'item_price' => 'required|numeric|min:1',
             //'model' => 'required|string|max:100',
             'short_description' => 'required|string|max:300',
@@ -642,7 +642,7 @@ class HomeController extends Controller
         return Redirect::to('/dashboard');
     }
 
-     /**
+    /**
      * Delete your own ad
      * @param type $id
      * @return type
@@ -652,8 +652,8 @@ class HomeController extends Controller
         $user = \Auth::user();
 
         $post = Post::where('post_id', $id)
-                ->where('user_id', $user->id)
-                ->first();
+            ->where('user_id', $user->id)
+            ->first();
 
         foreach ($post->postimages as $aPostImage) {
             $image = base_path("public/$aPostImage->postimage_file");
@@ -665,7 +665,7 @@ class HomeController extends Controller
 
         $post->delete();
 
-//        //Message for Notification Builder
+        //        //Message for Notification Builder
         Session()->put('message', array(
             'title' => __('Ad Deleted'),
             'body' => __('Ad has been permenently deleted'),
@@ -682,7 +682,13 @@ class HomeController extends Controller
             'email' => 'required|email'
         ]);
 
+        $post = Post::find($request->post_id);
 
+        $user = Auth::user();
+        Mail::send('site.emails.sendToFriend', ['post' => $post,'user'=>$user], function ($m) use ($user, $request) {
+            $m->from($user->email, $user->name);
+            $m->to($request->email)->subject('See this post!');
+        });
 
         Session()->put('message', array(
             'title' => __('Sent ad'),
@@ -699,8 +705,8 @@ class HomeController extends Controller
     public function reportAd(Request $request)
     {
         $already = Report::where("post_id", $request->post_id)
-                ->where("user_id", \Auth::user()->id)
-                ->first();
+            ->where("user_id", \Auth::user()->id)
+            ->first();
 
         if ($already) {
             Session()->put('message', array(
@@ -744,11 +750,11 @@ class HomeController extends Controller
     {
         $user_id = \Auth::user()->id;
         $already = Favourites::where("post_id", $id)
-                ->where("user_id", $user_id)
-                ->first();
+            ->where("user_id", $user_id)
+            ->first();
         if ($already) {
             Session()->put('message', array(
-                'title' =>__('Already in favorite'),
+                'title' => __('Already in favorite'),
                 'body' => __('You can see this ad on your dashboard > favorites'),
                 'type' => 'warning'
             ));
@@ -770,8 +776,8 @@ class HomeController extends Controller
     }
 
 
-        public function promoteAd($id)
-       {
+    public function promoteAd($id)
+    {
         $user = \Auth::user();
 
         $user_id = $user->id;
@@ -879,5 +885,4 @@ class HomeController extends Controller
     {
         return view('home');
     }
-
 }

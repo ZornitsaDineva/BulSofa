@@ -19,7 +19,7 @@
 
                         {!! Form::open([ 'url' => LaravelLocalization::localizeUrl('/sendToFriend'),'method' => 'post']) !!}
                         <div class="form-group">
-                            <label class="control-label">@lang('Your friend`s email')</label>
+                            <label class="control-label">@lang('Your friend`s email:')</label>
                             {!! Form::hidden('post_id', $adDetails->post_id) !!}
                             {!! Form::email('email', null, ['class' => 'form-control', 'required' => true]) !!}
                             @if ($errors->has('email'))
