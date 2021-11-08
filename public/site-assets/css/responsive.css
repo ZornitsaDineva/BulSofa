@@ -117,6 +117,9 @@
 
 /* sm */
 @media (min-width: 768px) and (max-width: 991px) {
+    .ad-meta{
+        position: relative;
+    }
     .slider-text {
         margin-top: 100px;
     }
@@ -362,6 +365,12 @@
 
 /* xs */
 @media (max-width: 767px) {
+    .ad-meta{
+        position: relative;
+    }
+    svg#BulgariaSVG {
+        width: 600px;
+    }
     .slider-text {
         margin-top: 100px;
     }
@@ -866,8 +875,12 @@
 	}
 }
 
-/* XS Portrit */
+/* XS Portrait */
 @media (max-width: 479px) {
+    svg#BulgariaSVG {
+        width: 600px;
+    }
+
 	.tb-mnu .nv-tbs li  {
 		padding:10px 6px;
 	}
@@ -1096,6 +1109,9 @@
 		margin-bottom: 20px;
 		float: none;
 	}
+    .ad-meta{
+        position: relative;
+    }
 
 }
 

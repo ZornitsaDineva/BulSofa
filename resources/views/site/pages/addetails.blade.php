@@ -5,7 +5,7 @@
 <meta property="og:type"          content="website" />
 <meta property="og:title"         content="{{$adDetails->ad_title}}" />
 <meta property="og:description"   content="{{$adDetails->short_description}}" />
-<meta property="og:image"         content="{{asset('$adDetails->postimages->first()->postimage_thumbnail')}}" />
+<meta property="og:image"         content="{{asset($adDetails->postimages->first()->postimage_thumbnail)}}" />
 <style>
     @media print {
         div.slide{

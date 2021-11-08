@@ -1,4 +1,4 @@
-<svg id='BulgariaSVG' width="800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 800">
+<svg id='BulgariaSVG' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 800">
      <style>
 
         path.divisions {

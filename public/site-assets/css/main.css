@@ -670,7 +670,7 @@ textarea {
     background-color: #f6f6f6;
     border-top: 1px solid #eeeeee;
     min-height: 35px;
-    position: relative;
+    position: absolute;
     bottom: 0;
     right:-1px;
     width:100%;
@@ -1178,6 +1178,9 @@ a.verified i {
 .single-cta {
     padding:0 25px;
 }
+svg#BulgariaSVG {
+    width: 800px;
+}
 
 /* ==========================================================================
        Services Ad
@@ -1212,6 +1215,7 @@ a.verified i {
 #home-section .btn {
     margin-right: 15px;
     margin-top:20px;
+    margin-bottom: 50px;
 }
 
 #services-ad .language-dropdown {

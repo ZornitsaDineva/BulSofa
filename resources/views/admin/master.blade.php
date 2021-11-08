@@ -15,7 +15,7 @@
         <!-- jvectormap -->
         <link rel="stylesheet" href="{{asset('assets/components/jvectormap/jquery-jvectormap.css')}}">
 
-        <!--         Morris chart 
+        <!--         Morris chart
                 <link rel="stylesheet" href="{{asset('assets/components/morris.js/morris.css')}}">-->
 
         <!-- Select2 -->
@@ -48,9 +48,9 @@
         <script type="text/javascript"  src="{{asset('assets/components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 
 
-    </head>    
-    
-    <body class="hold-transition skin-green sidebar-mini">        
+    </head>
+
+    <body class="hold-transition skin-green sidebar-mini">
         <div class="wrapper">
 
             <header class="main-header  hidden-print">
@@ -59,7 +59,7 @@
             <!-- Left side column. contains the logo and sidebar -->
             <aside class="main-sidebar hidden-print">
                 <!-- sidebar: style can be found in sidebar.less -->
-                <section class="sidebar">                   
+                <section class="sidebar">
                     @include('admin.common.sidebar')
 
                 </section>
@@ -96,7 +96,7 @@
                 <div class="pull-right hidden-xs">
                     <b>Version</b> 1.0.0
                 </div>
-                <strong>Copyright &copy; 2021 <a href="https://BulSofa.com">IT Step Academy</a>.</strong>
+                <strong>Copyright &copy; 2021 <a href="/">BulSofa.com</a>.</strong>
             </footer>
 
             <!-- Control Sidebar -->
@@ -119,7 +119,7 @@
         <script src="{{asset('assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js')}}"></script>
         <!-- SlimScroll -->
         <script src="{{asset('assets/components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
-        <!--ChartJS--> 
+        <!--ChartJS-->
         <script src="{{asset('assets/components/chart.js/Chart.js')}}"></script>
 
 
