@@ -117,6 +117,9 @@
 
 /* sm */
 @media (min-width: 768px) and (max-width: 991px) {
+    .banner-form form {
+        border: 0px;
+    }
     .ad-meta{
         position: relative;
     }
@@ -365,6 +368,9 @@
 
 /* xs */
 @media (max-width: 767px) {
+    .banner-form form {
+        border: 0px;
+    }
     .ad-meta{
         position: relative;
     }
@@ -877,6 +883,9 @@
 
 /* XS Portrait */
 @media (max-width: 479px) {
+    .banner-form form {
+        border: 0px;
+    }
     svg#BulgariaSVG {
         width: 600px;
     }
