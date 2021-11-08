@@ -47,11 +47,8 @@
             $rowItem = 0;
 
             ?>
-
-            @foreach($categories as $aCat)
-            @if($rowItem ==0)
             <div class="row">
-            @endif
+            @foreach($categories as $aCat)
 
                 <div class="single-service">
                     <div class="services-icon"><img src="{{asset($aCat->category_image)}}" alt="images" class="img-responsive"></div>
@@ -71,12 +68,9 @@
                         @endforeach
                     </ul>
                 </div>
-                @if($rowItem == 5)
-                <?php $rowItem = 0 ?>
-            </div>
-            @endif
+            
             @endforeach
-
+            </div>
             <!-- single-service -->
 
 

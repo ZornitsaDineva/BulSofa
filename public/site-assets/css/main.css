@@ -1264,6 +1264,11 @@ svg#BulgariaSVG {
     border-radius: 4px;
 }
 
+.services div.row {
+    display: flex;
+    flex-flow: row wrap;
+}
+
 .single-service {
     float:left;
     /*display: block;*/
