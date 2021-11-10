@@ -378,6 +378,68 @@ class AdminController extends Controller
         return Redirect::to('admin/admin_messages');
     }
 
+
+    public function showAdminMessage($id)
+    {
+
+        $admin_message_respond = AdminMessage::select([
+            'admin_messages.admin_message_id',
+            'users.name',
+            'admin_messages.comment'
+        ])
+            ->join('users', 'users.id', '=', 'admin_messages.sender_id')
+            ->where('admin_message_id', '=', $id)
+            ->first();
+
+        //Load Component
+        $this->layout['adminContent'] = view('admin.partials.admin_message.respond_form')
+            ->with('admin_message', $admin_message_respond);
+
+        //return view
+        return view('admin.master', $this->layout);
+    }
+
+    /**
+     * Show admin_messages/respond page
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function adminMessageRespond(Request $request)
+    {
+
+        $request->validate([
+            'id' => 'required|int',
+            'response' => 'required|string|max:500'
+        ]);
+
+        $admin_message = AdminMessage::find($request->id);
+        $admin_message->response = $request->response;
+        $admin_message->read_status = 1;
+        $admin_message->save();
+
+        $this->sendEmailAdminResponse($request, $admin_message);
+
+        return Redirect::to('admin/admin_messages');
+    }
+
+    /**
+     * Send an e-mail reminder to the user.
+     *
+     * @param  Request  $request
+     * @param  int  $id
+     * @return Response
+     */
+    private function sendEmailAdminResponse(Request $request,$admin_message) {
+        $user = User::findOrFail($admin_message->sender_id);
+
+        Mail::send('response', ['user' => $user,'admin_message'=>$admin_message], function ($m) use ($user) {
+        //Mail::send('response', [], function ($m) {
+            $m->from('hello@app.com', 'BulSofa');
+
+            $m->to($user->email, $user->name)->subject('Admin Respose!');
+            //$m->to('me@help.com', 'me')->subject('Admin Respose!');
+        });
+    }
+
     /**
      * Recharge
      */
@@ -548,8 +610,8 @@ class AdminController extends Controller
             $validatedData = $request->validate([
                 'category_title_en' => 'required|string|unique:categories|max:50',
                 'category_title_bg' => 'required|string|unique:categories|max:50',
-                //'category_image' => 'required',
-                'category_icon' => 'required'
+                'category_image' => 'required',
+                //'category_icon' => 'required'
             ]);
 
             $category = new Category;
@@ -568,7 +630,7 @@ class AdminController extends Controller
         $category->category_title_en = $request->category_title_en;
         $category->category_title_bg = $request->category_title_bg;
 
-        $category->category_icon = $request->category_icon;
+        //$category->category_icon = $request->category_icon;
 
         $category->category_weight = $request->category_weight;
         //$category->category_caption = $request->category_caption;
@@ -932,64 +994,4 @@ class AdminController extends Controller
         return Redirect::to('/')->send();
     }
 
-
-    public function showAdminMessage($id)
-    {
-
-        $admin_message_respond = AdminMessage::select([
-            'admin_messages.admin_message_id',
-            'users.name',
-            'admin_messages.comment'
-        ])
-            ->join('users', 'users.id', '=', 'admin_messages.sender_id')
-            ->where('admin_message_id', '=', $id)
-            ->first();
-
-        //Load Component
-        $this->layout['adminContent'] = view('admin.partials.admin_message.respond_form')
-            ->with('admin_message', $admin_message_respond);
-
-        //return view
-        return view('admin.master', $this->layout);
-    }
-
-    /**
-     * Show admin_messages/respond page
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function adminMessageRespond(Request $request)
-    {
-
-        $request->validate([
-            'id' => 'required|int',
-            'response' => 'required|string|max:500'
-        ]);
-
-        $admin_message = AdminMessage::find($request->id);
-        $admin_message->response = $request->response;
-        $admin_message->read_status = 1;
-        $admin_message->save();
-
-        $this->sendEmailAdminResponse($request, $admin_message);
-
-        return Redirect::to('admin/admin_messages');
-    }
-/**
-     * Send an e-mail reminder to the user.
-     *
-     * @param  Request  $request
-     * @param  int  $id
-     * @return Response
-     */
-    private function sendEmailAdminResponse(Request $request,$admin_message) {
-        $user = User::findOrFail($admin_message->sender_id);
-
-        Mail::send('response', ['user' => $user,'admin_message'=>$admin_message], function ($m) use ($user) {
-        //Mail::send('response', [], function ($m) {
-            $m->from('hello@app.com', 'BulSofa');
-
-            $m->to($user->email, $user->name)->subject('Admin Respose!');
-            //$m->to('me@help.com', 'me')->subject('Admin Respose!');
-        });
-    }
 }
