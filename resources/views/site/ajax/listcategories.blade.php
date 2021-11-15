@@ -64,7 +64,7 @@
         $("#category-selector-text").html(selText);
 
         $("#category-selector-parent-value").val(selParentValue);
-        $("#category-selector-parent-text").html(selParentText);
+        $("#category-selector-parent-text").html(selParentText).trigger('my.change');
 
         $("#category-selector-image").attr('src', selImage);
         $('#popupSelectModal').modal("hide");

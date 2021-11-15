@@ -48,7 +48,7 @@
                         <div class="section postdetails">
                             <h4>@lang('Sell an item or service') <span class="pull-right">* @lang('Mandatory Fields')</span></h4>
 
-                            <div class="row form-group">
+                            <div class="row form-group" >
                                 <label class="col-sm-3 label-title">@lang('Category')</label>
                                 <div class="col-sm-9">
                                     <?php
@@ -104,7 +104,10 @@
                                 </div>
                             </div>
                             {{--@endif--}}
-                            <div class="row form-group">
+
+
+
+                            <div class="row form-group" id="adType">
                                 <label class="col-sm-3">@lang('Type of ad')<span class="required">*</span></label>
                                 <div class="col-sm-9">
 
@@ -127,6 +130,7 @@
                                     @endif
                                 </div>
                             </div>
+
                             <div class="row form-group add-title">
                                 <label class="col-sm-3 label-title">@lang('Title for your Ad')<span class="required">*</span></label>
                                 <div class="col-sm-9">
@@ -464,8 +468,21 @@ if (old('imagenames')) {
 
                                 window.onbeforeunload = null;
 
+var adTypeRow = $('#adType');
+adTypeRow.hide();
+
+$(document).on('my.change', '#category-selector-parent-text', function() {
+    var category = $('#category-selector-parent-text').text();
+    if (category == 'Собственост' || category == 'Property') {
+        adTypeRow.show();
+    } else {
+        adTypeRow.hide();
+    }
+});
+
 
 </script>
 @endpush
 
 @endsection
+

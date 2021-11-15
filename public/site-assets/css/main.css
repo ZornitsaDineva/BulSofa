@@ -2446,6 +2446,10 @@ svg#BulgariaSVG {
        Post Page
 ========================================================================== */
 
+#adType {
+    display: none;
+}
+
 .post-option {
     background-color: #fff;
     border-radius: 4px;

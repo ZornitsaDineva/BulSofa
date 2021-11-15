@@ -8,11 +8,10 @@
 
             <tr>
                 <td style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box;">
+
                     <?php
                     $url = LaravelLocalization::localizeUrl('/ad/' . $post->post_id);
                     ?>
-
-
 
                     <p style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787E; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">@lang('Hello,see this post:')</p>
                     <a href="{{ $url }}">{{ $url }}</a>
