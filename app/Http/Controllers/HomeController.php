@@ -62,7 +62,7 @@ class HomeController extends Controller
      */
     public function dashboard()
     {
-        $userAds = Post::where("user_id", \Auth::user()->id)
+        $userAds = Post::where("user_id", Auth::user()->id)
             ->orderBy('post_id', 'desc')
             ->get();
 
@@ -77,7 +77,7 @@ class HomeController extends Controller
 
     public function userFavourites()
     {
-        $favouriteAds = Favourites::where("user_id", \Auth::user()->id)
+        $favouriteAds = Favourites::where("user_id", Auth::user()->id)
             ->orderBy('post_id', 'desc')
             ->get();
 
@@ -132,7 +132,7 @@ class HomeController extends Controller
         ]);
 
         $rechargeRequest = new RechargeRequest;
-        $rechargeRequest->user_id = \Auth::user()->id;
+        $rechargeRequest->user_id = Auth::user()->id;
         $rechargeRequest->recharge_amount = $request->recharge_amount;
         $rechargeRequest->request_status = 1; //1 = new
         $rechargeRequest->save();
@@ -152,7 +152,7 @@ class HomeController extends Controller
      */
     public function messages()
     {
-        View::share('userId', \Auth::user()->id);
+        View::share('userId', Auth::user()->id);
 
         //Load Component
         $this->layout['siteContent'] = view('site.pages.dashboard.messages');
@@ -172,7 +172,7 @@ class HomeController extends Controller
      */
     public function viewMessage($code, $sender, $receiver)
     {
-        $loggedId = \Auth::user()->id;
+        $loggedId = Auth::user()->id;
 
         if ($sender == $loggedId) {
             $other = $receiver;
@@ -203,7 +203,7 @@ class HomeController extends Controller
 
 
         View::share("user_logged", $loggedId);
-        View::share("user_logged_name", \Auth::user()->name);
+        View::share("user_logged_name", Auth::user()->name);
 
         view::share("user_other", $other);
         view::share("user_other_name", $otherPartyUser->name);
@@ -226,7 +226,7 @@ class HomeController extends Controller
      */
     public function account()
     {
-        $userData = User::find(\Auth::user()->id);
+        $userData = User::find(Auth::user()->id);
 
         //Load Component
         $this->layout['siteContent'] = view('site.pages.dashboard.account')->with('userData', $userData);
@@ -242,8 +242,8 @@ class HomeController extends Controller
      */
     public function accountUpdate(Request $request)
     {
-        $authUser = \Auth::user();
-        $userData = \User::find($authUser->id);
+        $authUser = Auth::user();
+        $userData = User::find($authUser->id);
 
         $request->validate([
             'name' => 'required|string|max:200'
@@ -322,7 +322,7 @@ class HomeController extends Controller
             }
         }
 
-        $authUser = \Auth::user();
+        $authUser = Auth::user();
         $userData = User::find($authUser->id);
 
 
@@ -342,7 +342,7 @@ class HomeController extends Controller
     {
         $folder = Session()->get('post-image-cache');
         if (!$folder) {
-            $user = \Auth::user();
+            $user = Auth::user();
             $folder = $user->id . "_" . uniqid();
             Session()->put('post-image-cache', $folder);
         }
@@ -417,7 +417,7 @@ class HomeController extends Controller
             'imagenames' => 'required|string|min:5',
         ]);
 
-        $user = \Auth::user();
+        $user = Auth::user();
 
 
         $post = new Post;
@@ -511,7 +511,7 @@ class HomeController extends Controller
             }
         }
 
-        $authUser = \Auth::user();
+        $authUser = Auth::user();
         $userData = User::find($authUser->id);
         $postData = Post::where("post_id", $post_id)
             ->where("user_id", $authUser->id)
@@ -577,7 +577,7 @@ class HomeController extends Controller
             'long_description' => 'required|string|max:5000',
         ]);
 
-        $user = \Auth::user();
+        $user = Auth::user();
 
 
         $post = Post::find($request->post_id);
@@ -649,7 +649,7 @@ class HomeController extends Controller
      */
     public function deleteAd($id)
     {
-        $user = \Auth::user();
+        $user = Auth::user();
 
         $post = Post::where('post_id', $id)
             ->where('user_id', $user->id)
@@ -726,7 +726,7 @@ class HomeController extends Controller
         ]);
 
         $report = new Report;
-        $report->user_id = \Auth::user()->id;
+        $report->user_id = Auth::user()->id;
         $report->post_id = $request->post_id;
         $report->reason = $request->reason;
         $report->message = $request->message;
@@ -748,7 +748,7 @@ class HomeController extends Controller
      */
     public function favourAd($id)
     {
-        $user_id = \Auth::user()->id;
+        $user_id = Auth::user()->id;
         $already = Favourites::where("post_id", $id)
             ->where("user_id", $user_id)
             ->first();
@@ -760,7 +760,6 @@ class HomeController extends Controller
             ));
         } else {
             $favourite = new Favourites;
-
             $favourite->user_id = $user_id;
             $favourite->post_id = $id;
             $favourite->save();
@@ -778,7 +777,7 @@ class HomeController extends Controller
 
     public function promoteAd($id)
     {
-        $user = \Auth::user();
+        $user = Auth::user();
 
         $user_id = $user->id;
 
@@ -865,7 +864,7 @@ class HomeController extends Controller
         ]);
 
         $adminMessage = new AdminMessage;
-        $adminMessage->sender_id = \Auth::user()->id;
+        $adminMessage->sender_id = Auth::user()->id;
         $adminMessage->comment = $request->comment;
         $adminMessage->read_status = 0; //0 means new
         $adminMessage->save();

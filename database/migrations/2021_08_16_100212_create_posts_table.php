@@ -18,16 +18,17 @@ class CreatePostsTable extends Migration
             $table->increments('post_id');
             $table->integer('user_id')->unsigned();
             $table->integer('subcategory_id')->unsigned();
+            //$table->integer('category_id')->unsigned();
             $table->integer('city_id')->unsigned();
             $table->string('ad_type');
             $table->string('ad_title');
             $table->string('item_condition');
             $table->float('item_price');
             $table->tinyInteger('price_negotiable')->default(0);
-            $table->string('brand')->nullable();
-            $table->string('model')->nullable();
-            $table->string('delivery')->nullable();
-            $table->tinyInteger('status')->default(1); // 1 published, 2 unpublished
+            //$table->string('brand')->nullable();
+            //$table->string('model')->nullable();
+            //$table->string('delivery')->nullable();
+            $table->tinyInteger('status')->default(1); // 1 published, 0 unpublished
             $table->text('short_description',500);
             $table->text('long_description',5000);
             $table->integer('views')->default(0);

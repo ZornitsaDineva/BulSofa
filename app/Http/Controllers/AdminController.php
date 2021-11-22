@@ -327,7 +327,7 @@ class AdminController extends Controller
             ->orderBy("read_status", 'asc');
 
 
-        return \DataTables::of($admin_messages)
+        return DataTables::of($admin_messages)
 
             ->editColumn('read_status', function ($row) {
                 $status = '';
@@ -474,7 +474,7 @@ class AdminController extends Controller
             ->orderBy('recharge_requests.request_status', 'DESC');
 
 
-        return \DataTables::of($recharges)
+        return DataTables::of($recharges)
             ->editColumn('request_status', function ($row) {
                 $status = 'something wrong';
                 if ($row->request_status == 1) {
@@ -611,7 +611,7 @@ class AdminController extends Controller
                 'category_title_en' => 'required|string|unique:categories|max:50',
                 'category_title_bg' => 'required|string|unique:categories|max:50',
                 'category_image' => 'required',
-                //'category_icon' => 'required'
+                'category_icon' => 'required'
             ]);
 
             $category = new Category;
@@ -630,7 +630,7 @@ class AdminController extends Controller
         $category->category_title_en = $request->category_title_en;
         $category->category_title_bg = $request->category_title_bg;
 
-        //$category->category_icon = $request->category_icon;
+        $category->category_icon = $request->category_icon;
 
         $category->category_weight = $request->category_weight;
         //$category->category_caption = $request->category_caption;
