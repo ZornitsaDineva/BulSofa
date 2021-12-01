@@ -69,7 +69,7 @@
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
-                <section class="content-header hidden-print">
+                <!--section class="content-header hidden-print">
                     <h1>
                         <small>Version 1.0.0</small>
                     </h1>

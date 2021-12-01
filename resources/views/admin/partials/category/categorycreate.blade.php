@@ -6,10 +6,6 @@
     <div class="col-md-9">
         <!-- general form elements -->
         <div class="box box-primary">
-            <div class="box-header with-border">
-                <h3>Create Category</h3>
-            </div>
-            <!-- /.box-header -->
 
             @if(isset($oldCategoryData))
             {!! Form::model($oldCategoryData,['class' => 'form-horizontal' , 'url' => 'admin/category/save-category','method' => 'post','enctype'=> 'multipart/form-data']) !!}
@@ -20,6 +16,12 @@
             {!! Form::open(['class' => 'form-horizontal' , 'url' => 'admin/category/save-category','method' => 'post','enctype'=> 'multipart/form-data']) !!}
             <?php $process = "Create"; ?>
             @endif
+
+            <!-- /.box-header -->
+
+            <div class="box-header with-border">
+                <h3>{{$process}} Category</h3>
+            </div>
 
             <div class="box-body">
 

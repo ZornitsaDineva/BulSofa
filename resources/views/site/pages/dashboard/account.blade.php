@@ -44,7 +44,7 @@
                             <div class="form-group">
                                 <label class="control-label col-sm-3">@lang('Email Address')</label>
                                 <div class="col-sm-9">
-                                    {!! Form::email('email', null, ['class' => 'form-control', 'disabled'=> 'true']) !!}
+                                    {!! Form::email('email', null, ['class' => 'form-control','disabled'=> 'true']) !!}
                                 </div>
                             </div>
 

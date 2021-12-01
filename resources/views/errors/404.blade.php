@@ -17,7 +17,7 @@
 
         <link rel="stylesheet" href="{{asset('site-assets/css/font-awesome/css/font-awesome.min.css')}}">
         <link rel="stylesheet" href="{{asset('site-assets/css/icofont/css/icofont.css')}}">
-        <link rel="stylesheet" href="{{asset('site-assets/css/main.css')}}">  
+        <link rel="stylesheet" href="{{asset('site-assets/css/main.css')}}">
         <link id="preset" rel="stylesheet" href="{{asset('site-assets/css/presets/preset1.css')}}">
         <link rel="stylesheet" href="{{asset('site-assets/css/responsive.css')}}">
 
@@ -28,7 +28,7 @@
         <link href="https://fonts.maateen.me/mukti/font.css" rel="stylesheet">
 
         <!-- icons -->
-        <link rel="icon" href="images/ico/favicon.ico">	
+        <link rel="icon" href="images/ico/favicon.ico">
         <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{asset('site-assets/images/ico/apple-touch-icon-144-precomposed.png')}}">
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{asset('site-assets/images/ico/apple-touch-icon-114-precomposed.png')}}">
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{asset('site-assets/images/ico/apple-touch-icon-72-precomposed.html')}}">
@@ -57,12 +57,12 @@
                         <div class="col-sm-12" style="text-align: center">
                             <h1>@lang('oh no')</h1>
                             <h2 style="font-size: 15rem">404</h2>
-                            <p>@lang('We could not find the page you where looking for. now what?')</p>
+                            <p>@lang('We could not find the page you where looking for, now what?')</p>
                             <br/><br/><br/>
                             <div class="btn-group">
                                 <a href="{{url('/')}}" class="btn btn-success">@lang('Get Back to') BulSofa.com</a>
                             </div>
-                        </div>                        
+                        </div>
                     </div><!-- row -->
                 </div><!-- contaioner -->
             </div><!-- view-ad -->
