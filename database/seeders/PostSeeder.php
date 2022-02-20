@@ -75,7 +75,7 @@ class PostSeeder extends Seeder
                     'item_condition' => $types[$faker->numberBetween(0, 1)],
                     'item_price' => $faker->randomFloat(2, 10, 500000),
                     'price_negotiable' => '0',
-                    'delivery' => "In Person",
+                    //'delivery' => "In Person",
                     'status' => 1,
                     'views' => mt_rand(0, 1000),
                     'short_description' => $faker->realText(50, 2),
