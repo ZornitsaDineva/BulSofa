@@ -95,7 +95,7 @@ For Database:
 	to generate sample data, 100 fake users, 3000 fake posts and 150 promoted(top ads) run the following seeder,
         you can change the number of fake data by editing database/seeds/PostsSeeder.php
 	
-		php artisan db:seed --class=PostsSeeder
+		php artisan db:seed --class=PostSeeder
 
 		
 ## About Laravel
