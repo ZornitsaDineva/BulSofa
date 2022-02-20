@@ -25,7 +25,7 @@ class PostSeeder extends Seeder
         $subcategories = 64;
 
 
-        $numberOfAds = $cities * $subcategories/3;
+        $numberOfAds = $cities * $subcategories / 10;
         $numberOfUsers = ceil($numberOfAds / 2);
         $numberOfPromoted = ceil($numberOfAds / 5);
 
