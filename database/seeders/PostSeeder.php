@@ -25,7 +25,7 @@ class PostSeeder extends Seeder
         $subcategories = 64;
 
 
-        $numberOfAds = $cities * $subcategories / 10;
+        $numberOfAds = ceil($cities * $subcategories / 4);
         $numberOfUsers = ceil($numberOfAds / 2);
         $numberOfPromoted = ceil($numberOfAds / 5);
 
@@ -56,8 +56,8 @@ class PostSeeder extends Seeder
 
         $post_id = 0;
 
-        for ($city_id = 1; $city_id <= $cities; $city_id++){
-            for ($subcategory_id = 2; $subcategory_id <= $subcategories+1; $subcategory_id++) {
+        for ($city_id = 1; $city_id <= $cities; $city_id+=2){
+            for ($subcategory_id = 2; $subcategory_id <= $subcategories+1; $subcategory_id+=2) {
                 $post_id++;
 
                 $rndUser = $faker->numberBetween(1, $numberOfUsers);
